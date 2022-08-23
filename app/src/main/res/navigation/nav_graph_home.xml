@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_home"
+    app:startDestination="@id/fragmentPixabayHome">
+
+    <fragment
+        android:id="@+id/fragmentPixabayHome"
+        android:name="com.alok.pixabay.PixabayHomeFragment"
+        android:label="FragmentPixabayHome"
+        tools:layout="@layout/fragment_pixabay_home">
+
+        <action
+            android:id="@+id/action_pixabay_home_to_pixabay_image_details"
+            app:destination="@id/fragmentPixabayImageDetails" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentPixabayImageDetails"
+        android:name="com.alok.pixabay.PixabayImageDetailsFragment"
+        android:label="FragmentPixabayImageDetails"
+        tools:layout="@layout/fragment_pixabay_image_details" />
+
+</navigation>
