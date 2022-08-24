@@ -1,6 +1,7 @@
 package com.alok.pixabay.di
 
 import com.alok.pixabay.Constants.BASE_URL
+import com.alok.pixabay.data.ApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class ExternalDependenciesModule {
+class NetworkDependenciesModule {
 
     @Provides
     @Singleton
@@ -20,6 +21,12 @@ abstract class ExternalDependenciesModule {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun getApiService(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 
 }
