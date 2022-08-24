@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragmentPixabayHome"
-        android:name="com.alok.pixabay.PixabayHomeFragment"
+        android:name="com.alok.pixabay.ui.PixabayHomeFragment"
         android:label="FragmentPixabayHome"
         tools:layout="@layout/fragment_pixabay_home">
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/fragmentPixabayImageDetails"
-        android:name="com.alok.pixabay.PixabayImageDetailsFragment"
+        android:name="com.alok.pixabay.ui.PixabayImageDetailsFragment"
         android:label="FragmentPixabayImageDetails"
         tools:layout="@layout/fragment_pixabay_image_details" />
 

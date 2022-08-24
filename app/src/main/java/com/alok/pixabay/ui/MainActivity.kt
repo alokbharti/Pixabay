@@ -1,7 +1,8 @@
-package com.alok.pixabay
+package com.alok.pixabay.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.alok.pixabay.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

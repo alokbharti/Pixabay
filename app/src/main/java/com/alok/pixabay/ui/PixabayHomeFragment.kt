@@ -1,4 +1,4 @@
-package com.alok.pixabay
+package com.alok.pixabay.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
