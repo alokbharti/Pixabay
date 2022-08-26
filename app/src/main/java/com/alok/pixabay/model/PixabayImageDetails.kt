@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class PixabayImageDetails(
     @SerializedName("id") val id: Int,
-    @SerializedName("tags") val tags: List<String>,
+    @SerializedName("tags") val tags: String,
     @SerializedName("previewURL") val previewURL: String,
     @SerializedName("largeImageURL") val largeImageURL: String,
     @SerializedName("downloads") val downloads: Int,

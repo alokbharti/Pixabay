@@ -1,6 +1,6 @@
 package com.alok.pixabay.di
 
-import com.alok.pixabay.Constants.BASE_URL
+import com.alok.pixabay.utillity.Constants.BASE_URL
 import com.alok.pixabay.data.ApiService
 import dagger.Module
 import dagger.Provides

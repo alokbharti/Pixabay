@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <dimen name="fragment_right_margin">16dp</dimen>
+    <dimen name="fragment_left_margin">16dp</dimen>
+    <dimen name="common_margin">16dp</dimen>
+    <dimen name="common_margin_between_views">8dp</dimen>
+
+    <dimen name="tag_size">12sp</dimen>
+    
+</resources>

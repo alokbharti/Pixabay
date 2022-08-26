@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Pixabay</string>
+    <string name="search_hint_text">search any images</string>
+    <string name="loading_more_content">loading…</string>
+    <string name="result_query_text">showing result for %1$s</string>
+    <string name="something_went_wrong">Something went wrong…</string>
+    <string name="retry">Retry</string>
 </resources>
