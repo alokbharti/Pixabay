@@ -36,6 +36,7 @@ class PixabayViewModel @Inject constructor(
                 }
                 is ResponseResult.Success -> {
                     _apiLoaderLiveData.value = false
+                    _errorMessage.value = ""
                     _pixabayImageData.value = result.data
                 }
             }

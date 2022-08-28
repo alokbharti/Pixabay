@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.widget.TextView
-import androidx.core.widget.addTextChangedListener
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -129,16 +127,37 @@ class PixabayHomeFragment: Fragment(), ItemClickCallback<PixabayImageDetails> {
             }
         })
 
+        binding.btnRetry.setOnClickListener {
+            viewModel.getPixabayImageData(currentQuery, page)
+        }
+
     }
 
     override fun onItemClicked(value: PixabayImageDetails, position: Int) {
-        val bundle = Bundle().apply {
-            putSerializable(PIXABAY_IMAGE_DETAILS, value)
+        val alertDialog: AlertDialog? = activity?.let {
+            val builder = AlertDialog.Builder(it)
+            builder.apply {
+                setMessage(R.string.see_more_detail)
+                setPositiveButton(R.string.ok) { dialog, id ->
+                    val bundle = Bundle().apply {
+                        putSerializable(PIXABAY_IMAGE_DETAILS, value)
+                    }
+                    findNavController().navigate(
+                        R.id.action_pixabay_home_to_pixabay_image_details,
+                        bundle
+                    )
+                }
+                setNegativeButton(R.string.cancel) { dialog, id ->
+                    dialog.cancel()
+                }
+            }
+            builder.create()
         }
+        alertDialog?.show()
+    }
 
-        findNavController().navigate(
-            R.id.action_pixabay_home_to_pixabay_image_details,
-            bundle
-        )
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 }

@@ -5,4 +5,7 @@
     <string name="result_query_text">showing result for %1$s</string>
     <string name="something_went_wrong">Something went wrong…</string>
     <string name="retry">Retry</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="see_more_detail">Do you want to see more details about this?</string>
 </resources>

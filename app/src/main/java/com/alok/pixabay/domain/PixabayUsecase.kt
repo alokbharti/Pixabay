@@ -20,7 +20,7 @@ class PixabayUsecase @Inject constructor(
             val data = apiService.getPixabayImageData(queryText, page)
             for (pixabayImageData in data.hits) {
                 //converting tags into #tag format
-                val tags = pixabayImageData.tags.split(",")
+                val tags = pixabayImageData.tags?.split(",") ?: mutableListOf()
                 var requiredTags = ""
                 for (tag in tags) {
                     requiredTags += "#$tag, "

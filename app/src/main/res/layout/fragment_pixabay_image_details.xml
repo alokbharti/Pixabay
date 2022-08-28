@@ -1,6 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="@dimen/common_margin">
+
+    <ImageView
+        android:id="@+id/ivPixabayLargeImage"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@drawable/ic_baseline_image_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvPixabayUserName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivPixabayLargeImage"
+        android:layout_marginTop="@dimen/common_margin_between_views"
+        android:textColor="@color/black"
+        tools:text="_alok_bharti"/>
+
+    <TextView
+        android:id="@+id/tvNumberOfComments"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivPixabayLargeImage"
+        android:layout_marginTop="@dimen/common_margin_between_views"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="12"
+        android:drawablePadding="@dimen/small_margin_between_views"
+        app:drawableStartCompat="@drawable/ic_outline_comment_24" />
+
+    <TextView
+        android:id="@+id/tvNumberOfDownloads"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/tvNumberOfComments"
+        app:layout_constraintTop_toBottomOf="@id/ivPixabayLargeImage"
+        android:layout_marginTop="@dimen/common_margin_between_views"
+        android:layout_marginEnd="@dimen/common_margin_between_views"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="12"
+        android:drawablePadding="@dimen/small_margin_between_views"
+        app:drawableStartCompat="@drawable/ic_outline_download_24"
+        />
+
+    <TextView
+        android:id="@+id/tvNumberOfLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@id/tvNumberOfDownloads"
+        app:layout_constraintTop_toBottomOf="@id/ivPixabayLargeImage"
+        android:layout_marginTop="@dimen/common_margin_between_views"
+        android:layout_marginEnd="@dimen/common_margin_between_views"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        tools:text="12"
+        android:drawablePadding="@dimen/small_margin_between_views"
+        app:drawableStartCompat="@drawable/ic_baseline_thumb_up_off_alt_24" />
+
+    <TextView
+        android:id="@+id/tvPixabayTags"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvPixabayUserName"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/common_margin"
+        android:textSize="@dimen/tag_size"
+        android:textStyle="bold"
+        tools:text="#dummy_image, #test"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
