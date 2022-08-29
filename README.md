@@ -1,6 +1,6 @@
 # Pixabay App
 
-![Alt Text](pixabay.gif)
+<img src="pixabay.gif" width="250" height="250"/>
 
 ## Functionalities:
 - User can search for images entering one or more words in a text field
