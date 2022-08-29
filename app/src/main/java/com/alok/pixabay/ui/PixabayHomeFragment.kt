@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -53,15 +54,8 @@ class PixabayHomeFragment: Fragment(), ItemClickCallback<PixabayImageDetails> {
 
         viewModel.apiLoaderLiveData.observe(viewLifecycleOwner) {
             if (it) {
-                if (viewModel.pixabayImageDataData.value != null) {
-                    //consecutive load
-                    binding.tvLoadingText.visibility = View.VISIBLE
-                } else {
-                    //first load
-                    binding.pbLoader.visibility = View.VISIBLE
-                }
+                binding.pbLoader.visibility = View.VISIBLE
             } else {
-                binding.tvLoadingText.visibility = View.GONE
                 binding.pbLoader.visibility = View.GONE
             }
         }
@@ -83,6 +77,9 @@ class PixabayHomeFragment: Fragment(), ItemClickCallback<PixabayImageDetails> {
                     viewModel.getLastSearchedQuery()
                 )
                 adapter.setPixabayImageList(it)
+                if (currentQuery != viewModel.getLastSearchedQuery()) {
+                    Toast.makeText(context, R.string.internet_error, Toast.LENGTH_LONG).show()
+                }
             }
         }
 

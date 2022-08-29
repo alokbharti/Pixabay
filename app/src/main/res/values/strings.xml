@@ -4,6 +4,7 @@
     <string name="loading_more_content">loading…</string>
     <string name="result_query_text">showing result for %1$s</string>
     <string name="something_went_wrong">Something went wrong…</string>
+    <string name="internet_error">Not able to get the data, please check your internet</string>
     <string name="retry">Retry</string>
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>
