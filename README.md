@@ -2,7 +2,7 @@
 
 ## Functionalities:
 - User can search for images entering one or more words in a text field
-- In case of no internet and if user has already done some search, it'll cache the last searched result and thus allow some kind of offline handling
+- In case of no internet and if user has already done some search, it'll cache the last searched result and will display the same (offline caching using room).
 - With a click on a list item, it'll ask the user if he wants to see more details using alertdialog. In case of a positive answer a new detail screen will opened.
 - The detail screen contain: 
   - A bigger version of the image, the name of the user, A list of image’s tag
