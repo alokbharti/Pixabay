@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/ivPixabayLargeImage"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="@dimen/expanded_image_size"
+        android:layout_height="@dimen/expanded_image_size"
         app:srcCompat="@drawable/ic_baseline_image_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

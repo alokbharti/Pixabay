@@ -11,5 +11,5 @@ interface ApiService {
     suspend fun getPixabayImageData(
         @Query("q") queryText: String,
         @Query("page") page: Int
-    ): PixabayApiResponse
+    ): PixabayApiResponse?
 }

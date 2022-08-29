@@ -18,30 +18,34 @@ class PixabayUsecase @Inject constructor(
         return try {
             val pixabayImageDetailsList = mutableListOf<PixabayImageDetails>()
             val data = apiService.getPixabayImageData(queryText, page)
-            for (pixabayImageData in data.hits) {
-                //converting tags into #tag format
-                val tags = pixabayImageData.tags?.split(",") ?: mutableListOf()
-                var requiredTags = ""
-                for (tag in tags) {
-                    requiredTags += "#$tag, "
-                }
-                requiredTags = requiredTags.substring(0, requiredTags.length - 1) //remove last comma
+            data?.let {
+                for (pixabayImageData in it.hits) {
+                    //converting tags into #tag format
+                    val tags = pixabayImageData.tags?.split(",") ?: mutableListOf()
+                    var requiredTags = ""
+                    for (tag in tags) {
+                        requiredTags += "#${tag.trim()}, "
+                    }
+                    requiredTags =
+                        requiredTags.substring(0, requiredTags.length - 2) //remove last comma
 
-                val pixabayImageDetails = PixabayImageDetails(
-                    id = pixabayImageData.id,
-                    tags = requiredTags,
-                    previewURL = pixabayImageData.previewURL,
-                    largeImageURL = pixabayImageData.largeImageURL,
-                    downloads = pixabayImageData.downloads,
-                    likes = pixabayImageData.likes,
-                    comments = pixabayImageData.comments,
-                    user = pixabayImageData.user
-                )
-                pixabayImageDetailsList.add(pixabayImageDetails)
+                    val pixabayImageDetails = PixabayImageDetails(
+                        id = pixabayImageData.id,
+                        tags = requiredTags,
+                        previewURL = pixabayImageData.previewURL,
+                        largeImageURL = pixabayImageData.largeImageURL,
+                        downloads = pixabayImageData.downloads,
+                        likes = pixabayImageData.likes,
+                        comments = pixabayImageData.comments,
+                        user = pixabayImageData.user
+                    )
+                    pixabayImageDetailsList.add(pixabayImageDetails)
+                }
+                ResponseResult.Success(pixabayImageDetailsList)
+            } ?: kotlin.run {
+                ResponseResult.Error(COMMON_ERROR_MESSAGE)
             }
-            ResponseResult.Success(pixabayImageDetailsList)
         } catch (e: Exception) {
-            Log.e("PixapayResponse", "getPixabayImageData exception: $e")
             ResponseResult.Error(COMMON_ERROR_MESSAGE)
         }
     }

@@ -6,7 +6,8 @@
     <dimen name="common_margin">16dp</dimen>
     <dimen name="common_margin_between_views">8dp</dimen>
     <dimen name="small_margin_between_views">4dp</dimen>
-
+    <dimen name="preview_size">120dp</dimen>
+    <dimen name="expanded_image_size">300dp</dimen>
     <dimen name="tag_size">12sp</dimen>
     
 </resources>
