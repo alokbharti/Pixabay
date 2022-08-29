@@ -19,6 +19,7 @@ import com.alok.pixabay.contract.ItemClickCallback
 import com.alok.pixabay.databinding.FragmentPixabayHomeBinding
 import com.alok.pixabay.model.PixabayImageDetails
 import com.alok.pixabay.ui.PixabayImageDetailsFragment.Companion.PIXABAY_IMAGE_DETAILS
+import com.alok.pixabay.utillity.Constants.DEFAULT_QUERY
 import com.alok.pixabay.utillity.Util
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -31,7 +32,7 @@ class PixabayHomeFragment: Fragment(), ItemClickCallback<PixabayImageDetails> {
     private val viewModel: PixabayViewModel by activityViewModels()
     private lateinit var adapter: PixabayImageAdapter
     private var page: Int = 1
-    private var currentQuery = "fruits" //default
+    private var currentQuery = DEFAULT_QUERY //default
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,7 +53,7 @@ class PixabayHomeFragment: Fragment(), ItemClickCallback<PixabayImageDetails> {
 
         viewModel.apiLoaderLiveData.observe(viewLifecycleOwner) {
             if (it) {
-                if (adapter.itemCount > 0) {
+                if (viewModel.pixabayImageDataData.value != null) {
                     //consecutive load
                     binding.tvLoadingText.visibility = View.VISIBLE
                 } else {
@@ -77,7 +78,10 @@ class PixabayHomeFragment: Fragment(), ItemClickCallback<PixabayImageDetails> {
 
         viewModel.pixabayImageDataData.observe(viewLifecycleOwner) {
             if (!it.isNullOrEmpty()) {
-                binding.tvQueryText.text = getString(R.string.result_query_text, currentQuery)
+                binding.tvQueryText.text = getString(
+                    R.string.result_query_text,
+                    viewModel.getLastSearchedQuery()
+                )
                 adapter.setPixabayImageList(it)
             }
         }

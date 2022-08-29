@@ -1,9 +1,15 @@
 package com.alok.pixabay.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
+@Entity
 data class PixabayImageDetails(
+    @SerializedName("timestamp")
+    @PrimaryKey
+    val timestamp: Long = System.currentTimeMillis(),
     @SerializedName("id") val id: Int?,
     @SerializedName("tags") val tags: String?,
     @SerializedName("previewURL") val previewURL: String?,

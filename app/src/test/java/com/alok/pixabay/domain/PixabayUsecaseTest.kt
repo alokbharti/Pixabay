@@ -1,7 +1,9 @@
 package com.alok.pixabay.domain
 
+import android.content.SharedPreferences
 import com.alok.pixabay.PixabaySampleDataProvider
 import com.alok.pixabay.data.ApiService
+import com.alok.pixabay.data.room.PixabayDao
 import com.alok.pixabay.model.ResponseResult
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -24,12 +26,16 @@ class PixabayUsecaseTest{
 
     @MockK
     private lateinit var apiService: ApiService
+    @MockK
+    private lateinit var dao: PixabayDao
+    @MockK
+    private lateinit var sharedPref: SharedPreferences
     private lateinit var dataProvider: PixabaySampleDataProvider
 
     @Before
     fun setUpRepaymentPastPaymentUseCase() {
         MockKAnnotations.init(this, relaxUnitFun = true)
-        useCaseSUT = spyk(PixabayUsecase(apiService))
+        useCaseSUT = spyk(PixabayUsecase(apiService, dao, sharedPref))
         dataProvider = PixabaySampleDataProvider()
     }
 
