@@ -43,6 +43,7 @@ class PixabayUsecaseTest{
     @Throws(Exception::class)
     fun getRepaymentPastPaymentStatement_successfulResponse() = runBlocking {
         // Arrange
+        coEvery { dao.getAllPixabayImageData() } returns mutableListOf()
         coEvery {
             apiService.getPixabayImageData(any(), any())
         } returns dataProvider.getSamplePixabayApiValidResponse()
@@ -72,6 +73,7 @@ class PixabayUsecaseTest{
     @Throws(Exception::class)
     fun getRepaymentPastPaymentStatement_errorResponse() = runBlocking {
         // Arrange
+        coEvery { dao.getAllPixabayImageData() } returns mutableListOf()
         coEvery {
             apiService.getPixabayImageData(any(), any())
         } returns dataProvider.getSamplePixabayApiCorruptedResponse()
