@@ -1,5 +1,7 @@
 # Pixabay App
 
+![Alt Text](https://drive.google.com/file/d/1IgFkEPO7LrrNuTyZBzGAGmmHivrhIEdi/view?usp=sharing)
+
 ## Functionalities:
 - User can search for images entering one or more words in a text field
 - In case of no internet and if user has already done some search, it'll cache the last searched result and will display the same (offline caching using room).
