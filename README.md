@@ -1,6 +1,6 @@
 # Pixabay App
 
-![Alt Text](https://drive.google.com/file/d/1IgFkEPO7LrrNuTyZBzGAGmmHivrhIEdi/view?usp=sharing)
+![Alt Text](pixabay.gif)
 
 ## Functionalities:
 - User can search for images entering one or more words in a text field
