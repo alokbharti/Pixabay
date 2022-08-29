@@ -1,6 +1,6 @@
 # Pixabay App
 
-<img src="pixabay.gif" width="300" height="450"/>
+<img src="pixabay.gif" width="300" height="500"/>
 
 ## Functionalities:
 - User can search for images entering one or more words in a text field
