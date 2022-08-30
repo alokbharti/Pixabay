@@ -1,9 +1,8 @@
 package com.alok.pixabay.domain
 
-import android.content.SharedPreferences
 import com.alok.pixabay.PixabaySampleDataProvider
 import com.alok.pixabay.data.ApiService
-import com.alok.pixabay.data.room.PixabayDao
+import com.alok.pixabay.data.LocalDataSource
 import com.alok.pixabay.model.ResponseResult
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -27,15 +26,13 @@ class PixabayUsecaseTest{
     @MockK
     private lateinit var apiService: ApiService
     @MockK
-    private lateinit var dao: PixabayDao
-    @MockK
-    private lateinit var sharedPref: SharedPreferences
+    private lateinit var localDataSource: LocalDataSource
     private lateinit var dataProvider: PixabaySampleDataProvider
 
     @Before
     fun setUpRepaymentPastPaymentUseCase() {
         MockKAnnotations.init(this, relaxUnitFun = true)
-        useCaseSUT = spyk(PixabayUsecase(apiService, dao, sharedPref))
+        useCaseSUT = spyk(PixabayUsecase(apiService, localDataSource))
         dataProvider = PixabaySampleDataProvider()
     }
 
@@ -43,7 +40,7 @@ class PixabayUsecaseTest{
     @Throws(Exception::class)
     fun getRepaymentPastPaymentStatement_successfulResponse() = runBlocking {
         // Arrange
-        coEvery { dao.getAllPixabayImageData() } returns mutableListOf()
+        coEvery { localDataSource.getAllPixabayImageData() } returns mutableListOf()
         coEvery {
             apiService.getPixabayImageData(any(), any())
         } returns dataProvider.getSamplePixabayApiValidResponse()
@@ -73,7 +70,7 @@ class PixabayUsecaseTest{
     @Throws(Exception::class)
     fun getRepaymentPastPaymentStatement_errorResponse() = runBlocking {
         // Arrange
-        coEvery { dao.getAllPixabayImageData() } returns mutableListOf()
+        coEvery { localDataSource.getAllPixabayImageData() } returns mutableListOf()
         coEvery {
             apiService.getPixabayImageData(any(), any())
         } returns dataProvider.getSamplePixabayApiCorruptedResponse()
