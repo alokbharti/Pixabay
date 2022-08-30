@@ -47,7 +47,6 @@ class PixabayUsecaseTest{
         val pixabayImageData = useCaseSUT.getPixabayImageData(query, page)
 
         // Assert
-        // if result is an instance of success class or not
         assertThat(pixabayImageData, instanceOf(ResponseResult.Success::class.java))
 
         when(pixabayImageData) {
@@ -83,11 +82,16 @@ class PixabayUsecaseTest{
         val pixabayImageData = useCaseSUT.getPixabayImageData(query, page)
 
         // Assert
-        // if result is an instance of success class or not
         assertThat(pixabayImageData, instanceOf(ResponseResult.Error::class.java))
 
         when(pixabayImageData){
             is ResponseResult.Error -> {
+                //verifying 2 functions of LocalDataSource should be called
+                //to get data locally
+                coVerify(exactly = 1) { localDataSource.getAllPixabayImageData() }
+                //since no data in db, it shouldn't be invoked
+                coVerify(exactly = 0) { localDataSource.getLastSearchedQueryFromSharedPref() }
+
                 assertEquals(pixabayImageData.errorMessage, "Something went wrong")
             }
         }
