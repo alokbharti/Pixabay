@@ -4,10 +4,8 @@ import com.alok.pixabay.PixabaySampleDataProvider
 import com.alok.pixabay.data.ApiService
 import com.alok.pixabay.data.LocalDataSource
 import com.alok.pixabay.model.ResponseResult
-import io.mockk.MockKAnnotations
-import io.mockk.coEvery
+import io.mockk.*
 import io.mockk.impl.annotations.MockK
-import io.mockk.spyk
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.instanceOf
 import org.junit.Assert.*
@@ -38,7 +36,7 @@ class PixabayUsecaseTest{
 
     @Test
     @Throws(Exception::class)
-    fun getRepaymentPastPaymentStatement_successfulResponse() = runBlocking {
+    fun getPixabayImageData_successfulResponse() = runBlocking {
         // Arrange
         coEvery { localDataSource.getAllPixabayImageData() } returns mutableListOf()
         coEvery {
@@ -52,7 +50,7 @@ class PixabayUsecaseTest{
         // if result is an instance of success class or not
         assertThat(pixabayImageData, instanceOf(ResponseResult.Success::class.java))
 
-        when(pixabayImageData){
+        when(pixabayImageData) {
             is ResponseResult.Success -> {
                 val pixabayImageList = pixabayImageData.data
                 assertEquals(pixabayImageList?.size, 1)
@@ -62,13 +60,19 @@ class PixabayUsecaseTest{
 
                 //verifying tags only as this is modified in UseCase class
                 assertEquals(pixabayImageDetails!!.tags, "#fruit, #lemon, #art")
+
+                //verifying 3 functions of LocalDataSource should be called
+                //to store/update the data locally
+                coVerify(exactly = 1) { localDataSource.deleteExistingPixabayImageData() }
+                coVerify(exactly = 1) { localDataSource.insertPixabayImageDetailsList(any()) }
+                coVerify(exactly = 1) { localDataSource.saveLastSearchedQueryToSharedPref(any()) }
             }
         }
     }
 
     @Test
     @Throws(Exception::class)
-    fun getRepaymentPastPaymentStatement_errorResponse() = runBlocking {
+    fun getPixabayImageData_errorResponse() = runBlocking {
         // Arrange
         coEvery { localDataSource.getAllPixabayImageData() } returns mutableListOf()
         coEvery {
